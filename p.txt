@@ -1,0 +1,19 @@
+        private void kezdes_btn_Click(object sender, RoutedEventArgs e)
+        {
+            var fajl = new OpenFileDialog();
+            if (fajl.ShowDialog() == true)
+            {
+                StreamReader sr = new StreamReader(fajl.FileName);
+                sr.ReadLine();
+                while (!sr.EndOfStream)
+                {
+                    string sor = sr.ReadLine();
+                    string[] adat = sor.Split(";");
+                    pilota ember = new pilota(adat[0], Convert.ToDateTime(adat[1]), Convert.ToString(adat[2]), (Convert.ToInt32(adat[3].Length) > 0) ? int.Parse(adat[3]) : 0);
+                    lista.Add(ember);
+
+                }
+
+                sr.Close();
+
+
